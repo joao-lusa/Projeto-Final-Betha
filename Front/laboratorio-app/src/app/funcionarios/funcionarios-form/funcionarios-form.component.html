@@ -1,6 +1,6 @@
-<h1 class="mt-4">Cadastro de Funcionários</h1>
+<h1 class="mt-4">Funcionários</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Informações do Funcionário</li>
+    <li class="breadcrumb-item active"> {{ funcionario.id ? 'Edição' : 'Cadastro'}} </li>
 </ol>
 
 <div class="container" >
@@ -17,33 +17,53 @@
         </div>
       </div>
       <div class="row">
-      <div class="form-group col-4">
-        <label for="nome">ID:</label>
-        <input type="text" class="form-control" placeholder="Informe o nome" disabled="true" [(ngModel)]="funcionario.id" name="id">
-      </div>
+        <div class="form-group col-4">
+          <label for="nome">ID:</label>
+          <input type="text" class="form-control" disabled="true" [(ngModel)]="funcionario.id" name="id">
+        </div>
+
         <div class="form-group col-8">
           <label for="nome">Nome:</label>
           <input type="text" class="form-control" placeholder="Informe o nome" [(ngModel)]="funcionario.nome" name="nome">
         </div>
+
         <div class="form-group col-6">
           <label for="email">Email:</label>
           <input type="text" class="form-control" placeholder="Informe email para contato" [(ngModel)]="funcionario.email" name="email">
         </div>
+
         <div class="form-group col-6">
             <label for="cidade">Cidade:</label>
             <input type="text" class="form-control" placeholder="Cidade aonde reside" [(ngModel)]="funcionario.cidade" name="cidade">
         </div>
+
         <div class="form-group col-6">
             <label for="telefone">Telefone:</label>
             <input type="text" class="form-control" placeholder="Telefone para contato" id="telefone"  [(ngModel)]="funcionario.telefone" name="telefone">
         </div>
+          
         <div class="form-group col-6">
             <label for="cpf">CPF:</label>
             <input type="text" class="form-control" placeholder="CPF do funcionário" id="cpf"  [(ngModel)]="funcionario.cpf" name="cpf">
         </div>
-    
-        <button type="submit" class="btn btn-primary m-3" id="funcionarioForm">Submit</button>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-primary" *ngIf="!funcionario.id">
+            <i class="fa fa-save"></i>
+            Salvar
+          </button>
+          <button type="submit" class="btn btn-primary" *ngIf="funcionario.id">
+            <i class="fa fa-save"></i>
+            Atualizar
+          </button>
 
+          <button type="button" class="btn btn-danger ml-1" (click)="voltarParaListagem()">
+            <i class="fa fa-arrow-alt-circle-left"></i>
+            Voltar
+          </button>
+        </div>
       </div>
   </form>
 </div>

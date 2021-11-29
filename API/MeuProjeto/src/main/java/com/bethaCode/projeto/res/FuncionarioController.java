@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/funcionario")
@@ -25,6 +26,11 @@ public class FuncionarioController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Funcionario salvar(@Valid @RequestBody Funcionario funcionario){
         return repository.save(funcionario);
+    }
+
+    @GetMapping
+    public List<Funcionario> acharTodos(){
+        return repository.findAll();
     }
 
     @GetMapping("{id}")
