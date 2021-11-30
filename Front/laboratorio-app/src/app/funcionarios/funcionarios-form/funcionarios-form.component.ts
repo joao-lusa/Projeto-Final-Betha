@@ -24,42 +24,46 @@ export class FuncionariosFormComponent implements OnInit {
 
   ngOnInit(): void {
     let params : Observable<Params> = this.activatedRouter.params;
-    params.subscribe(urlParams => {
-      this.id - urlParams['id'];
-      if(this.id){
-        this.service
-        .getFuncionarioById(this.id)
-        .subscribe(response => this.funcionario = response,
-                  erroResponse => this.funcionario = new Funcionario());
-      }
-    })
-  }
 
-  gravarFuncionario(){
-    if(this.id){
-      this.service
-        .atualizar(this.funcionario)
-        .subscribe(resposntaSucesso =>{
-          this.sucesso = true;
-          this.errosApi = null;
-        }, respostaComErro => {
-          this.errosApi = ['Erro ao atulizar o cliente!']
-        })
+    params
+      .subscribe(urlParams => {
+            this.id = urlParams['id'];
+            if (this.id){
+                this.service
+                    .getFuncionarioById(this.id)
+                    .subscribe(respostaSucesso => {
+                        this.funcionario = respostaSucesso;
+                    }, respostaComErro => {
+                        this.funcionario = new Funcionario();
+                    })
+            }
+      });
+}
+
+  gravarFuncionarios(){
+    if (this.id){
+          this.service
+              .atualizar(this.funcionario)
+              .subscribe( respostaComSucesso => {
+                    this.sucesso = true;
+                    this.errosApi = null;
+              }, respostaComErro => {
+                    this.errosApi = respostaComErro.error.erros;
+              })
     }else{
       this.service
-      .salvar(this.funcionario)
-      .subscribe(response=>{
-        this.sucesso = true;
-        this.errosApi = null;
-        this.funcionario = response;
-      }, errorResponse => {
-        this.errosApi = errorResponse.error.erros;
-        this.sucesso = false;
-      })
-    }
-    
-    
+          .salvar(this.funcionario)
+          .subscribe( respostaComSucesso => {
+            this.sucesso = true;
+            this.errosApi = null;
+            this.funcionario = respostaComSucesso;
+          }, respostaComErro => {
+            this.sucesso = false;
+            this.errosApi = respostaComErro.error.erros;
+          })
+      }
   }
+
   voltarParaListagem(){
     this.router.navigate(['/funcionarioLista'])
   }

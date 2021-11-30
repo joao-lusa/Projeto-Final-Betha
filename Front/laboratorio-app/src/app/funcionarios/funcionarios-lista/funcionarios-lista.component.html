@@ -33,9 +33,7 @@
                         <th>Id:</th>
                         <th>Nome:</th>
                         <th>Email:</th>
-                        <th>Cidade:</th>
                         <th>Telefone:</th>
-                        <th>CPF:</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -44,19 +42,18 @@
                         <td> {{ funcionario.id }} </td>
                         <td> {{ funcionario.nome }} </td>
                         <td> {{ funcionario.email }} </td>
-                        <td> {{ funcionario.cidade }} </td>
                         <td> {{ funcionario.telefone }} </td>
-                        <td> {{ funcionario.cpf }} </td>
                         <td>
                             <button class="btn btn-primary" 
-                                    routerLink="/funcionarioForm/{{funcionario.id}}"
+                                routerLink="/funcionarioForm/{{funcionario.id}}"
                             >
                                 <i class="fa fa-pen-square"></i>
                             </button>
 
                             <button class="btn btn-danger" 
                                     (click)="preparaDelecao(funcionario)"
-                                    data-toggle="modal" data-target="#modalSelecao"
+                                    data-toggle="modal" 
+                                    data-target="#modalSelecao"
                             >
                                 <i class="fa fa-trash"></i>
                             </button>
@@ -82,7 +79,7 @@
                     <button class="btn btn-success"
                     data-toggle="modal"
                     data-target="#modalSelecao" 
-                    (click)="deletarAluno()"
+                    (click)="deletarAluno   ()"
                     data-dismiss="modal">Confirmar</button> 
 
                     <button class="btn btn-danger" 

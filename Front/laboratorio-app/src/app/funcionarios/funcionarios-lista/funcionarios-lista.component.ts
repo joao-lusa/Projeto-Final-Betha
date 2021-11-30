@@ -35,8 +35,7 @@ export class FuncionariosListaComponent implements OnInit {
   }
 
   deletarAluno(){
-    this
-      .service
+    this.service
       .deletar(this.funcionarioSelecionado)
       .subscribe(
         respostaSucesso => {

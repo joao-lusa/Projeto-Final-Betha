@@ -6,8 +6,8 @@ import { FuncionariosListaComponent } from './funcionarios-lista/funcionarios-li
 
 const routes: Routes = [
   {path: 'funcionarioLista', component: FuncionariosListaComponent},
-  {path: 'funcionarioForm', component: FuncionariosFormComponent},
-  {path: 'funcionarioForm/:id', component: FuncionariosFormComponent}
+  {path: 'funcionarioForm/:id', component: FuncionariosFormComponent},
+  {path: 'funcionarioForm', component: FuncionariosFormComponent}
 ];
 
 @NgModule({
