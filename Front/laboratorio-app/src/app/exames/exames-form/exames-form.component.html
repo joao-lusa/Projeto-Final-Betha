@@ -4,37 +4,65 @@
 </ol>
 
 <div class="container">
-    <form class="row">
-        <div class="form-group col-12">
-          <label for="nome">Nome:</label>
-          <input type="text" class="form-control" placeholder="Informe o nome" id="nome">
-        </div>
-        <div class="form-group col-12">
-          <label for="valor">Valor:</label>
-          <input type="text" class="form-control" placeholder="Informe valor do exame" id="valor">
-        </div>
-        <div class="form-group col-12">
-            <label for="sigla">Sigla:</label>
-            <input type="text" class="form-control" placeholder="Sigla do Exame 'B12'" id="sigla">
-        </div>
-        
-        <div class="com-12 m-auto">
-            <div class="form-check-inline">
-                <p class="m-auto col-auto">Jejum:</p>
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Sim
-                </label>
+    <form #form="ngForm" (submit)="onSubmit()">
+        <div class="row">  
+
+            <div class="form-group col-12">
+                <label for="nome">Nome:</label>
+                <input type="text" 
+                        class="form-control" 
+                        placeholder="Informe o nome" 
+                        id="nome"
+                >
             </div>
-            <div class="form-check-inline">
-                <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Não
-                </label>
+
+                <div class="form-group col-12">
+                <label for="valor">Valor:</label>
+                <input type="text" 
+                        class="form-control" 
+                        placeholder="Informe valor do exame" 
+                        id="valor"
+                >
+            </div>
+
+            <div class="form-group col-12">
+                <label for="sigla">Sigla:</label>
+                <input type="text" 
+                        class="form-control" 
+                        placeholder="Sigla do Exame 'B12'" 
+                        id="sigla"
+                >
+            </div>
+            
+            <div class="form-group col-12">
+                <label for="sigla">Jejum:</label>
+                <input type="text" 
+                        class="form-control" 
+                        placeholder="informe se seu cliente deve um não fazer jejum" 
+                        name="jejum"
+                >
+            </div>
+
+            <div class="form-group col-12">
+               <label>Funcionário: </label>
+               <select class="form-control" 
+                        [ngModelOptions]="{standalone: true}" 
+                        [(ngModel)]="exame.idFuncionario"
+                >
+                   <option value="">Selecione..</option>
+                   <option *ngFor="let funcionario of funcionarios" [ngValue]="funcionario.id">
+                        {{ funcionario.nome }}
+                    </option>
+               </select>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary m-3">
+                        <i class="fa fa-save"></i> Salvar
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="form-group col-12">
-            <label for="idFundionario">Funcionário:</label>
-            <input type="number" class="form-control" placeholder="Informe o Código do Funcionário" id="idFundionario">
-        </div>
-        <button type="submit" class="btn btn-primary m-3">Submit</button>
     </form>
 </div>

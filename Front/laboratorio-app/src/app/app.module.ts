@@ -9,6 +9,8 @@ import { TemplateModule } from './template/template.module';
 import { HomeComponent } from './home/home.component'
 import { FuncionariosModule } from './funcionarios/funcionarios.module';
 import { ExamesModule } from './exames/exames.module';
+import { FuncionariosService } from './funcionarios.service';
+import { ExameService } from './exame.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,10 @@ import { ExamesModule } from './exames/exames.module';
     FuncionariosModule,
     ExamesModule
   ],
-  providers: [],
+  providers: [
+    FuncionariosService,
+    ExameService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
