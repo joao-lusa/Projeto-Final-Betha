@@ -17,6 +17,11 @@ public class Paciente {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @ManyToOne
+    @NotNull(message = "Deve ser informado um funcionario para adicionar ou mudar um exame!")
+    @JoinColumn(name = "id_exame")
+    private Exame exame;
+
     @NotEmpty(message = "Deve ser informado um nome válido")
     @Column(nullable = false, length = 100)
     private String nome;
@@ -24,12 +29,6 @@ public class Paciente {
     @Column(name = "data_exame")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataExame;
-
-    @ManyToOne
-    @NotNull(message = "Deve ser informado um funcionario para adicionar ou mudar um exame!")
-    @JoinColumn(name = "id_exame")
-    private Exame exame;
-
 
 }
 

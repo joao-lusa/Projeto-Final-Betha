@@ -20,8 +20,8 @@ import java.time.format.DateTimeFormatter;
 @RequiredArgsConstructor
 public class PacienteController {
 
-    private PacienteRepository pacienteRepository;
-    private ExameRepository exameRepository;
+    private final PacienteRepository pacienteRepository;
+    private final ExameRepository exameRepository;
 
     @PostMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
@@ -35,7 +35,7 @@ public class PacienteController {
                                 "O Exame " +idExame+ " Não Existe em nossa aplicação"));
 
         Paciente paciente = new Paciente();
-        paciente.setNome(paciente.getNome());
+        paciente.setNome(pacienteDTO.getNome());
         paciente.setDataExame(dataExame);
         paciente.setExame(exame);
 
