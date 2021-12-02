@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 
 @RestController
@@ -40,5 +41,52 @@ public class PacienteController {
         paciente.setExame(exame);
 
         return pacienteRepository.save(paciente);
+    }
+
+    @GetMapping
+    public List<Paciente> pesquisar(
+            @RequestParam(value = "nome", required = false, defaultValue = "") String nomeDoPaciente){
+        return pacienteRepository.finByNomePaciente("%"+ nomeDoPaciente +"%");
+    }
+
+    @GetMapping("{id}")
+    public Paciente acharPorId(@PathVariable Integer id){
+        return pacienteRepository
+                    .findById(id)
+                    .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Paciente " +id+" não cadastrada"));
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletar(@PathVariable Integer id){
+        pacienteRepository
+                    .findById(id)
+                    .map(paciente -> {
+                        pacienteRepository.delete(paciente);
+                        return Void.TYPE;
+                    })
+                    .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Nota " +id+ " não cadastrada!"));
+    }
+
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atulizar(@PathVariable Integer id, @RequestBody PacienteDTO dadoAtualizado){
+
+        LocalDate dataPaciente = LocalDate.parse(dadoAtualizado.getDataExame(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        Integer idExame = dadoAtualizado.getIdExame();
+        Exame exame = exameRepository
+                        .findById(idExame)
+                        .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                                "O Exame " +idExame+ " Não Existe em nossa aplicação"));
+        pacienteRepository
+                    .findById(id)
+                    .map(paciente -> {
+                        paciente.setNome(dadoAtualizado.getNome());
+                        paciente.setDataExame(dataPaciente);
+                        paciente.setExame(exame);
+                        return pacienteRepository.save(paciente);
+                    })
+                    .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Exame "+id+" Não cadastrada!"));
     }
 }
