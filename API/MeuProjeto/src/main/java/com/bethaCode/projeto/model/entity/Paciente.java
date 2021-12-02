@@ -29,6 +29,5 @@ public class Paciente {
     @Column(name = "data_exame")
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataExame;
-
 }
 
