@@ -6,7 +6,19 @@
 <div class="container">
 
     <div class="row">
-        <button class="btn btn-warning" (click)="consultar()">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+                {{ mensagemSucesso }}
+            </div>
+
+            <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+                {{ mensagemErro }}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <button class="btn btn-warning" (click)="novoCadastro()">
             <i class="fa fa-plus"></i>Novo
         </button>
     </div>
@@ -20,31 +32,32 @@
                     <tr>
                         <th>Id:</th>
                         <th>Nome:</th>
-                        <th>Email:</th>
-                        <th>Telefone:</th>
+                        <th>Valor:</th>
+                        <th>Sigla:</th>
+                        <th>Jejum:</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let funcionario of funcionarios">
-                        <td> {{ funcionario.id }} </td>
-                        <td> {{ funcionario.nome }} </td>
-                        <td> {{ funcionario.email }} </td>
-                        <td> {{ funcionario.telefone }} </td>
+                    <tr *ngFor="let exame of exames">
+                        <td> {{ exame.id }} </td>
+                        <td> {{ exame.nome }} </td>
+                        <td> {{ exame.valor }} </td>
+                        <td> {{ exame.sigla }} </td>
+                        <td> {{ exame.jejum }} </td>
                         <td>
-                            <button class="btn btn-primary" 
-                                routerLink="/funcionarioForm/{{funcionario.id}}"
-                            >
-                                <i class="fa fa-pen-square"></i>
-                            </button>
-
-                            <button class="btn btn-danger" 
-                                    (click)="preparaDelecao(funcionario)"
-                                    data-toggle="modal" 
-                                    data-target="#modalSelecao"
-                            >
-                                <i class="fa fa-trash"></i>
-                            </button>
+                        <button class="btn btn-primary" 
+                            routerLink="/examesForm/{{exame.id}}"
+                        >
+                        <i class="fa fa-pen-square"></i> 
+                        </button>
+                        <button class="btn btn-danger ml-1" 
+                            (click)="preparaDelecao(exame)"
+                            data-toggle="modal"
+                            data-target="#modalSelecao"
+                        >
+                        <i class="fa fa-trash"></i> 
+                        </button>
                         </td>
                     </tr>
                 </tbody>
@@ -59,15 +72,15 @@
                     <h4>Confirmação</h4>
                 </div>
 
-                <div class="modal-body" *ngIf="funcionarioSelecionado">
-                     Confirma a deleção do funcionario {{ funcionarioSelecionado.nome }} ?
+                <div class="modal-body" *ngIf="exameSelecionado">
+                     Confirma a deleção do aluno {{ exameSelecionado.nome }} ?
                 </div>
 
                 <div class="modal-footer">
                     <button class="btn btn-success"
                     data-toggle="modal"
                     data-target="#modalSelecao" 
-                    (click)="deletarAluno   ()"
+                    (click)="deletarExame()"
                     data-dismiss="modal">Confirmar</button> 
 
                     <button class="btn btn-danger" 
@@ -76,4 +89,5 @@
             </div>
         </div>
     </div>
+
 </div>  

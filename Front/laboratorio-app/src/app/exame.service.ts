@@ -16,4 +16,20 @@ export class ExameService {
   salvar(exame : Exame) : Observable<Exame>{
     return this.http.post<Exame>(this.apiURL, exame);
   }
+
+  getExames() : Observable<Exame[]>{
+    return this.http.get<Exame[]>(this.apiURL)
+  }
+
+  getExamesById(id: number): Observable<Exame>{
+    return this.http.get<Exame>(this.apiURL + `/${id}`);
+  }
+
+  atualizar(exame: Exame) : Observable<any>{
+    return this.http.put<Exame>(this.apiURL + `/${exame.id}`, exame)
+  }
+
+  deletar(exame: Exame) : Observable<any>{
+    return this.http.delete<any>(this.apiURL + `/${exame.id}`)
+  }
 }
