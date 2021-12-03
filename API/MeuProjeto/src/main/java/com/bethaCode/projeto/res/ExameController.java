@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/exames")
+@CrossOrigin("http://localhost:4200")
 @RequiredArgsConstructor
 public class ExameController {
 
@@ -53,9 +54,8 @@ public class ExameController {
     }
 
     @GetMapping
-    public List<Exame> pesquisar(
-            @RequestParam(value = "nome", required = false, defaultValue = "") String nomeDoExame){
-        return exameRepository.findByNomeExame("%"+nomeDoExame+"%");
+    public List<Exame> pesquisar(){
+        return exameRepository.findAll();
     }
 
     @DeleteMapping("{id}")

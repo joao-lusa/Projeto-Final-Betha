@@ -1,12 +1,19 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Exame } from './exames/exame';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExameService {
 
-  apiURL: string = environment.apiURLBase + "/api/"
+  apiURL: string = environment.apiURLBase + '/api/exames'
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  salvar(exame : Exame) : Observable<Exame>{
+    return this.http.post<Exame>(this.apiURL, exame);
+  }
 }

@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExameListaComponent implements OnInit {
 
+  nome: String;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  consultar(){
+    console.log(this.nome);
   }
 
 }

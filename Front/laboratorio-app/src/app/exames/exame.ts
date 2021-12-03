@@ -1,6 +1,8 @@
 export class Exame{
+    id: number;
     idFuncionario: number;
+    nome: String;
     valor: String;
     sigla: string;
-    jejem: string;  
+    jejum: string;  
 }

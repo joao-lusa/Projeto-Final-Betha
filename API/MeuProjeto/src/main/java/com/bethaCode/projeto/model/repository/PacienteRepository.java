@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface PacienteRepository  extends JpaRepository<Paciente, Integer> {
 
-    @Query(" SELECT FROM Paciente n WHERE upper(n.nome) like upper(:nome)")
+    @Query(" SELECT n FROM Paciente n WHERE upper(n.nome) like upper(:nome)")
     List<Paciente> finByNomePaciente(@Param("nome") String nome);
 }

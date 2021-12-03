@@ -5,55 +5,81 @@
 
 <div class="container">
     <form #form="ngForm" (submit)="onSubmit()">
-        <div class="row">  
 
-            <div class="form-group col-12">
+        <div class="row">
+            <div class="com-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="sucesso == true">
+                    Nota Salva/Atualizada com sucesso!
+                </div>
+
+                <div class="alert alert-danger" role="alert" *ngFor="let erro of errosApi">
+                    {{ erro }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-2">
+                <label for="nome">ID:</label>
+                <input type="text" 
+                        disabled = "true"
+                        class="form-control" 
+                        [(ngModel)]="exame.id" 
+                        name="id"
+                        placeholder="Informe o nome" 
+                >
+            </div>
+            <div class="form-group col-10">
                 <label for="nome">Nome:</label>
                 <input type="text" 
                         class="form-control" 
+                        [(ngModel)]="exame.nome" 
+                        name="nome"
                         placeholder="Informe o nome" 
-                        id="nome"
                 >
             </div>
 
-                <div class="form-group col-12">
+                <div class="form-group col-6">
                 <label for="valor">Valor:</label>
                 <input type="text" 
                         class="form-control" 
+                        [(ngModel)]="exame.valor"
+                        name="valor"
                         placeholder="Informe valor do exame" 
-                        id="valor"
                 >
             </div>
 
-            <div class="form-group col-12">
+            <div class="form-group col-6">
                 <label for="sigla">Sigla:</label>
                 <input type="text" 
                         class="form-control" 
-                        placeholder="Sigla do Exame 'B12'" 
-                        id="sigla"
+                        [(ngModel)]="exame.sigla"
+                        name="sigla"
+                        placeholder="Sigla do Exame 'B12'"
                 >
             </div>
             
-            <div class="form-group col-12">
+            <div class="form-group col-6">
                 <label for="sigla">Jejum:</label>
                 <input type="text" 
                         class="form-control" 
-                        placeholder="informe se seu cliente deve um não fazer jejum" 
+                        [(ngModel)]="exame.jejum"
                         name="jejum"
+                        placeholder="informe se seu cliente deve um não fazer jejum" 
                 >
             </div>
 
-            <div class="form-group col-12">
-               <label>Funcionário: </label>
-               <select class="form-control" 
+            <div class="form-group col-6">
+            <label>Funcionário: </label>
+            <select class="form-control" 
                         [ngModelOptions]="{standalone: true}" 
                         [(ngModel)]="exame.idFuncionario"
                 >
-                   <option value="">Selecione..</option>
-                   <option *ngFor="let funcionario of funcionarios" [ngValue]="funcionario.id">
+                <option value="">Selecione..</option>
+                <option *ngFor="let funcionario of funcionarios" [ngValue]="funcionario.id">
                         {{ funcionario.nome }}
                     </option>
-               </select>
+            </select>
             </div>
 
             <div class="row">
