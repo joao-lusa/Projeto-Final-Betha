@@ -11,11 +11,14 @@ import { FuncionariosModule } from './funcionarios/funcionarios.module';
 import { ExamesModule } from './exames/exames.module';
 import { FuncionariosService } from './funcionarios.service';
 import { ExameService } from './exame.service';
+import { PacienteModule } from './paciente/paciente.module';
+import { PacienteService } from './paciente.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -23,11 +26,13 @@ import { ExameService } from './exame.service';
     AppRoutingModule,
     TemplateModule,
     FuncionariosModule,
-    ExamesModule
+    ExamesModule,
+    PacienteModule,
   ],
   providers: [
     FuncionariosService,
-    ExameService
+    ExameService,
+    PacienteService
   ],
   bootstrap: [AppComponent]
 })

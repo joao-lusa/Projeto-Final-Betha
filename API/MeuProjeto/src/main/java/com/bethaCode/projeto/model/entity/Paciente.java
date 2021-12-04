@@ -30,8 +30,7 @@ public class Paciente {
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataExame;
 
-    @NotEmpty(message = "Deve ser informado o status do paciente")
-    @Column(nullable = false, length = 4)
+    @Column
     private String status;
 }
 
