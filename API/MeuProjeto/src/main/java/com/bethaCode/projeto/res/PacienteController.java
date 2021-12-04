@@ -38,6 +38,7 @@ public class PacienteController {
         Paciente paciente = new Paciente();
         paciente.setNome(pacienteDTO.getNome());
         paciente.setDataExame(dataExame);
+        paciente.setStatus(pacienteDTO.getStatus());
         paciente.setExame(exame);
 
         return pacienteRepository.save(paciente);
@@ -85,6 +86,7 @@ public class PacienteController {
                         paciente.setNome(dadoAtualizado.getNome());
                         paciente.setDataExame(dataPaciente);
                         paciente.setExame(exame);
+                        paciente.setStatus(dadoAtualizado.getStatus());
                         return pacienteRepository.save(paciente);
                     })
                     .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, "Exame "+id+" Não cadastrada!"));

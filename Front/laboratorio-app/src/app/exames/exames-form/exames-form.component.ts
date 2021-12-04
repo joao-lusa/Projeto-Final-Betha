@@ -51,7 +51,7 @@ export class ExamesFormComponent implements OnInit {
           this.sucesso = true;
           this.errosApi = null;
         }), respostaErro => {
-          this.errosApi = ['Erro ao atualizar o cliente']
+          this.errosApi = respostaErro.error.erros;
         }
     }else{
       this.servicoExame

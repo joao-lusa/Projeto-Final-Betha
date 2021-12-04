@@ -7,6 +7,7 @@ import lombok.Setter;
 public class PacienteDTO {
     private String nome;
     private String dataExame;
+    private String status;
     private Integer idExame;
 
     public PacienteDTO(){
