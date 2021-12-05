@@ -26,4 +26,16 @@ export class PacienteService {
     const url = this.apiURL + "?" + httpParams.toString();
     return this.http.get<any>(url);
   }
+
+  getPacientesById(id: number): Observable<Paciente>{
+    return this.http.get<Paciente>(this.apiURL + `/${id}`);
+  }
+
+  atualizar(paciente: Paciente) : Observable<any>{
+    return this.http.put<Paciente>(this.apiURL + `/${paciente.id}`, paciente);
+  }
+
+  deletar(paciente: Paciente) : Observable<any>{
+    return this.http.delete<any>(this.apiURL + `/${paciente.id}`);
+  }
 }

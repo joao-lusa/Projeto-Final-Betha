@@ -46,18 +46,18 @@
                         <td> {{ exame.sigla }} </td>
                         <td> {{ exame.jejum }} </td>
                         <td>
-                        <button class="btn btn-primary" 
-                            routerLink="/examesForm/{{exame.id}}"
-                        >
-                        <i class="fa fa-pen-square"></i> 
-                        </button>
-                        <button class="btn btn-danger ml-1" 
-                            (click)="preparaDelecao(exame)"
-                            data-toggle="modal"
-                            data-target="#modalSelecao"
-                        >
-                        <i class="fa fa-trash"></i> 
-                        </button>
+                            <button class="btn btn-primary" 
+                                routerLink="/examesForm/{{exame.id}}"
+                            >
+                                <i class="fa fa-pen-square"></i> 
+                            </button>
+                            <button class="btn btn-danger ml-1" 
+                                (click)="preparaDelecao(exame)"
+                                data-toggle="modal"
+                                data-target="#modalSelecao"
+                            >
+                                <i class="fa fa-trash"></i> 
+                            </button>
                         </td>
                     </tr>
                 </tbody>
@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="modal-body" *ngIf="exameSelecionado">
-                     Confirma a deleção do aluno {{ exameSelecionado.nome }} ?
+                     Confirma a deleção do exame {{ exameSelecionado.nome }} ?
                 </div>
 
                 <div class="modal-footer">

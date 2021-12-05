@@ -20,7 +20,7 @@
 
         <div class="row">
             <div class="form-group col-2">
-                <label for="nome">id:</label>
+                <label for="nome">ID:</label>
                 <input type="text" 
                         class="form-control" 
                         [(ngModel)]="paciente.id" 
@@ -76,9 +76,13 @@
 
         <div class="row">
             <div class="col-md-3">
-                <button type="submit" class="btn btn-success">
+                <button type="submit" class="btn btn-success" *ngIf="!paciente.id">
                     <i class="fa fa-save"></i>Salvar
                 </button>
+                <button type="submit" class="btn btn-primary" *ngIf="paciente.id">
+                    <i class="fa fa-save"></i> Atualizar
+                </button>
+
                 <button type="submit" class="btn btn-danger ml-1" routerLink="/pacientesLista">
                     <i class="fa fa-arrow-alt-circle-left"></i>Voltar
                 </button>

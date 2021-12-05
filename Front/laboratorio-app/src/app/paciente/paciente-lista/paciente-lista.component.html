@@ -52,6 +52,7 @@
                     <th>Data do Exame</th>
                     <th>Status</th>
                     <th>Exame</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -60,9 +61,49 @@
                     <td>{{ paciente.dataExame }}</td>
                     <td>{{ paciente.status }}</td>
                     <td>{{ paciente.exame.nome }}</td>
+                    <td>
+                        <button class="btn btn-primary" 
+                            routerLink="/pacientesForm/{{ paciente.id }}"
+                        >
+                            <i class="fa fa-pen-square"></i> 
+                        </button>
+                        <button class="btn btn-danger ml-1" 
+                            (click)="preparaDelecao(paciente)"
+                            data-toggle="modal"
+                            data-target="#modalSelecao"
+                        >
+                            <i class="fa fa-trash"></i> 
+                        </button>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
+
+    <div id="modalSelecao" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Confirmação</h4>
+                </div>
+
+                <div class="modal-body" *ngIf="pacienteSelecionado">
+                     Confirma a deleção do Paciente {{ pacienteSelecionado.nome }} ?
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-success"
+                    data-toggle="modal"
+                    data-target="#modalSelecao" 
+                    (click)="deletarExame()"
+                    data-dismiss="modal">Confirmar</button> 
+
+                    <button class="btn btn-danger" 
+                    data-dismiss="modal">Cancelar</button>                     
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 

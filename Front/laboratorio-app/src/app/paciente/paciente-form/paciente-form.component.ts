@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs';
 import { ExameService } from 'src/app/exame.service';
 import { Exame } from 'src/app/exames/exame';
 import { PacienteService } from 'src/app/paciente.service';
@@ -20,14 +22,27 @@ export class PacienteFormComponent implements OnInit {
   paciente: Paciente;
   sucesso: boolean = false;
   errosApi: String[];
+  id: number;
 
 
   constructor(private servicoExame: ExameService,
-              private servicoPaciente: PacienteService) {
+              private servicoPaciente: PacienteService,
+              private activatedRoute: ActivatedRoute) {
       this.paciente = new Paciente();
    }
 
   ngOnInit(): void {
+    let params : Observable<Params> = this.activatedRoute.params;
+    params.subscribe(urlParams => {
+      this.id = urlParams['id'];
+      if (this.id) {
+        this.servicoPaciente
+            .getPacientesById(this.id)
+            .subscribe(resposta => this.paciente = resposta,
+                      erroResposta => this.paciente = new Paciente());
+      }
+    })
+
     this.servicoExame
         .getExames()
         .subscribe(
@@ -35,16 +50,27 @@ export class PacienteFormComponent implements OnInit {
   }
 
   onSubmit(){
-    this.servicoPaciente
-        .salvar(this.paciente)
+    if (this.id) {
+      this.servicoPaciente
+        .atualizar(this.paciente)
         .subscribe(respostaSucesso => {
           this.sucesso = true;
           this.errosApi = null;
-          this.paciente = new Paciente();
-        }), errorResponse => {
-          this.errosApi = errorResponse.error.erros;
-          this.sucesso = false;
+        }), respostaErro => {
+          this.errosApi = respostaErro.error.erros;
         }
+    }else{
+      this.servicoPaciente
+      .salvar(this.paciente)
+      .subscribe(respostaSucesso => {
+        this.sucesso = true;
+        this.errosApi = null;
+        this.paciente = new Paciente();
+      }), errorResponse => {
+        this.errosApi = errorResponse.error.erros;
+        this.sucesso = false;
+      }
+    }
   }
 
   status: Status[] = [
