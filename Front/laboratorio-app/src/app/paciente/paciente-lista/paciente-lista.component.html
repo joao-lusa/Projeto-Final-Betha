@@ -1,1 +1,68 @@
-<p>paciente-lista works!</p>
+<h1 class="mt-4">Paciente</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">Consulta</li>
+</ol>
+
+<div class="container">
+    <form #consultaForm="ngForm" (submit)="consultar()">
+        <div class="col-md-6">
+            <label for="inputNome">Nome do paciente:</label>
+            <input type="text" 
+                [(ngModel)]="nome" 
+                name="nome" 
+                id="inputNome" 
+                class="form-control"
+            >
+        </div>
+   
+    
+        <br>
+
+        <div class="row">
+            <div class="col-md-4 ml-3">
+                <button type="submit" 
+                    class="btn btn-primary"
+                >
+                    <i class="fa fa-search mr-1"></i>Consultar
+                </button>
+
+                <button type="button" 
+                    class="btn btn-warning ml-1" 
+                    routerLink="/pacientesForm"
+                >
+                    <i class="fa fa-plus"></i>Novo
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <br>
+
+    <div class="row">
+        <div class="alert alert-warning col-12" role="alert" *ngIf="menssagem">
+            {{menssagem}}
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Data do Exame</th>
+                    <th>Status</th>
+                    <th>Exame</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let paciente of lista">
+                    <td>{{ paciente.nome }}</td>
+                    <td>{{ paciente.dataExame }}</td>
+                    <td>{{ paciente.status }}</td>
+                    <td>{{ paciente.exame.nome }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
