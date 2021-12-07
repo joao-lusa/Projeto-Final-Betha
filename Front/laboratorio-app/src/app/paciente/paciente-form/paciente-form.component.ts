@@ -8,7 +8,6 @@ import { Paciente } from '../paciente'
 
 interface Status {
   value: string;
-  viewValue: string;
 }
 
 @Component({
@@ -74,8 +73,8 @@ export class PacienteFormComponent implements OnInit {
   }
 
   status: Status[] = [
-    {value: 'A', viewValue: 'Atendido'},
-    {value: 'E', viewValue: 'Em espera'}
+    {value: 'Atendido'},
+    {value: 'Em espera',}
   ];
 
 }
