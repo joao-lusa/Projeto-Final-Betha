@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class ExameController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Exame salvar(@RequestBody ExameDTO exameDTO){
+    public Exame salvar(@RequestBody @Valid ExameDTO exameDTO){
 
         BigDecimal valorDoExame = bigDecimalConverter.converter(exameDTO.getValor());
 
