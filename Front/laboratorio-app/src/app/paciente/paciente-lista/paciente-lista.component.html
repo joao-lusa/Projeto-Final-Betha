@@ -43,6 +43,17 @@
             {{menssagem}}
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success" role="alert" *ngIf="mensagemSucesso">
+                {{ mensagemSucesso }}
+            </div>
+
+            <div class="alert alert-danger" role="alert" *ngIf="mensagemErro">
+                {{ mensagemErro }}
+            </div>
+        </div>
+    </div>
 
     <div class="col-md-12">
         <table class="table">
