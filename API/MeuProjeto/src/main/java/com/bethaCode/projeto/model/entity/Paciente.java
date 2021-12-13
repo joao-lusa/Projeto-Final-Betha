@@ -18,11 +18,9 @@ public class Paciente {
     private Integer id;
 
     @ManyToOne
-    @NotNull(message = "Deve ser informado um funcionario para adicionar ou mudar um exame!")
     @JoinColumn(name = "id_exame")
     private Exame exame;
 
-    @NotEmpty(message = "Deve ser informado um nome válido")
     @Column(nullable = false, length = 100)
     private String nome;
 

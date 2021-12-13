@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -26,7 +27,7 @@ public class PacienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Paciente salvar(@RequestBody PacienteDTO pacienteDTO){
+    public Paciente salvar(@RequestBody @Valid PacienteDTO pacienteDTO){
         LocalDate dataExame = LocalDate.parse(pacienteDTO.getDataExame(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
         Integer idExame = pacienteDTO.getIdExame();
@@ -71,7 +72,7 @@ public class PacienteController {
 
     @PutMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void atulizar(@PathVariable Integer id, @RequestBody PacienteDTO dadoAtualizado){
+    public void atulizar(@PathVariable Integer id, @RequestBody @Valid PacienteDTO dadoAtualizado){
 
         LocalDate dataPaciente = LocalDate.parse(dadoAtualizado.getDataExame(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 

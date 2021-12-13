@@ -72,7 +72,7 @@ public class ExameController {
     }
 
     @PutMapping("{id}")
-    public void atulizar(@PathVariable Integer id, @RequestBody ExameDTO dadoAtulizado){
+    public void atulizar(@PathVariable Integer id, @RequestBody @Valid ExameDTO dadoAtulizado){
 
         BigDecimal valorDoExame = bigDecimalConverter.converter(dadoAtulizado.getValor());
         Integer idFuncionario = dadoAtulizado.getIdFuncionario();
