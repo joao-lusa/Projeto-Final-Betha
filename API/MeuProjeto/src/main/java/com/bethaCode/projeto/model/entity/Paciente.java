@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
@@ -18,13 +16,12 @@ public class Paciente {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "id_exame")
     private Exame exame;
 
     @Column(nullable = false, length = 100)
     private String nome;
 
-    @Column(name = "data_exame")
+    @Column
     @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dataExame;
 
